@@ -1,0 +1,843 @@
+package pages.administration.serverConfiguration;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+/**
+ * Created by sarja on 7/23/2017.
+ */
+public class serverConfiguration {
+
+//----------------Declare web elements starts here------
+
+    //Declaration of WebDriver
+    WebDriver driver;
+
+    //Find Update button by xpath
+    @FindBy(xpath = "//input[@value='Update']")
+    WebElement updateButton;
+
+    //Find Cancel button by Link text
+    @FindBy(linkText = "Cancel")
+    WebElement cancelButton;
+
+    //-------Workspace Settings webelement starts---------//
+
+    //Find Workspace Settings by css
+    @FindBy(css ="#sec4 > div.nlv-settings-row-title")
+    WebElement workspace;
+
+    //Enable worksapce by clicking radio button
+    @FindBy(xpath="//input[@name='workspaceEnable']")
+    WebElement enableWorkspace;
+
+    //Sender license for collaborator
+    @FindBy (name= "numOfAllowedSenderlicenses")
+    WebElement senderLicenseCollaboration;
+
+    //Collaborators for user
+    @FindBy(name="collaboratorPerUser")
+    WebElement collaboratorPerUser;
+
+    //Worksapcce Delete after days
+    @FindBy (name = "autoWorkspaceDeletionDays")
+    WebElement autoDeleteDate;
+
+    //Apply to all workspace
+    @FindBy (name = "applyToExistingWorkspaces")
+    WebElement applyAllWorkspace;
+
+    //First alert for deletion
+    @FindBy (name = "autoWorkspaceDelReminderDays")
+    WebElement firstDeletionReminder;
+
+    //Second alert for deletion
+    @FindBy (name = "autoWorkspaceDel2ndReminderDays")
+    WebElement secondDeletionReminder;
+
+    //Hide auto deletion
+    @FindBy (name = "hideAutoWorkspaceDeletion")
+    WebElement hideAutoDeletion;
+
+    //Default Notification settings
+    @FindBy (id = "toggleSelect")
+    WebElement checkAllNotification;
+
+    //-------Workspace Settings webelement ends---------//
+
+    //-----Antivirus Settings webelement starts--------//
+
+    //enable antivirus
+    @FindBy (name = "antivirusEnable")
+    WebElement antivirusEnable;
+
+    //disable antivirus
+    @FindBy (xpath = "(//input[@name='antivirusEnable'])[2]")
+    WebElement antivirusDisable;
+
+    //file pattern
+    @FindBy (name="antivirusTrustedFilePatternList")
+    WebElement filePattern;
+
+    //Enable maximum size of file to scan
+    @FindBy (name="antivirusMaxFileSizeUsage")
+    WebElement fileSizeEnable;
+
+    //size of file
+    @FindBy (name="antivirusMaxFileSize")
+    WebElement maxFilesSize;
+
+    //local server
+    @FindBy (name="metascanRemoteServerUsage")
+    WebElement localServer;
+
+    //Remote server
+    @FindBy (xpath = "(//input[@name='metascanRemoteServerUsage'])[2]")
+    WebElement remoteServer;
+
+    //Remote server location
+    @FindBy (name="metascanRemoteServerUrl")
+    WebElement remoteServerAddress;
+
+    //RestApi version select
+    @FindBy (name="metadefenderRestAPIVersion")
+    WebElement restApiSelect;
+
+    //-----Antivirus Settings webelement ends--------//
+
+
+    //----User settings webelement start-------------//
+
+    //enable compliance
+    @FindBy (name="enableComplianceRole")
+    WebElement enableCompliance;
+
+    //disable compliance
+    @FindBy (xpath="(//input[@name='enableComplianceRole'])[2]")
+    WebElement disableCompliance;
+
+    //enable quota
+    @FindBy (name="enableUserQuota")
+    WebElement enableQuota;
+
+    //disable quota
+    @FindBy (xpath ="(//input[@name='enableUserQuota'])[2]")
+    WebElement disableQuota;
+
+    //Quota per user
+    @FindBy (name="userQuota")
+    WebElement userQuota;
+
+    //Maximum Quuota
+    @FindBy (name="maximumUserQuota")
+    WebElement maximumUserQuota;
+
+    //Disable expiration
+    @FindBy (xpath="(//input[@name='enableUserExpiration'])[2]")
+    WebElement disableExpiration;
+
+    //enable expiration
+    @FindBy (name="enableUserExpiration")
+    WebElement enableExpiration;
+
+    //Inactivity period
+    @FindBy (name="inactivityPeriod")
+    WebElement inactivityPeriod;
+
+    //Expire User
+    @FindBy (id="removeSenderRoleOnlyNo")
+    WebElement expireUser;
+
+    //Remove sender license
+    @FindBy (id="removeSenderRoleOnlyYes")
+    WebElement removeSenderLicense;
+
+    //First warning message
+    @FindBy (name="daysBeforeFirstWarning")
+    WebElement fristWarning;
+
+    //Second Warning
+    @FindBy (name="daysBeforeFinalWarning")
+    WebElement secondWarning;
+
+    //Exclusion List
+    @FindBy (name="expirationExclusionList")
+    WebElement exclusionList;
+
+    //Delete expir user
+    @FindBy (name="daysToDeleteExpiredUsers")
+    WebElement deleteExpireUser;
+
+    //----User settings webelement end-------------//
+
+
+    // -------User interface web elements starts -------//
+
+    //Find "User inter face" element by css
+    @FindBy(css = "#sec10 > div.nlv-settings-row-title")
+    WebElement userInterface;
+
+    //Find "Browser window title" tag input field by name
+    @FindBy(name = "browserWindowTitle")
+    WebElement browserWindowTitle;
+    //Find "CSS stylesheet location" tag input field by name
+    @FindBy(name = "css")
+    WebElement cssStyleSheetLocation;
+    //Find "Logo location" tag input field by name
+    @FindBy(name = "logo")
+    WebElement logoLocation;
+    //Find "Logo links to (optional)" tag input field by name
+    @FindBy(name = "logoLink")
+    WebElement logoLink;
+    //Find "Logo width (pixels)" tag input field by name
+    @FindBy(name = "logoWidth" )
+    WebElement logoWidth;
+    //Find "Logo height (pixels)" tag input field by name
+    @FindBy(name = "logoHeight")
+    WebElement logoHeight;
+    //Find "Custom sign in text (top)" tag input field by name
+    @FindBy(name = "signInTextTop")
+    WebElement signInTextTop;
+    //Find "Reset to original value" for "Custom sign in text (top)" tag input field by name
+    @FindBy(linkText = "Reset to original value")
+    WebElement resetToOriginalValueLinkCustomSignInTextTop;
+    //Find "Custom sign in text (right)" tag input field by name
+    @FindBy(name = "signInTextRight")
+    WebElement signInTextRight;
+    //Find "Reset to original value" for "Custom sign in text (right)" tag input field by name
+    @FindBy(xpath = "(//a[contains(text(),'Reset to original value')])[2]")
+    WebElement resetToOriginalValueLinkCustomSignInTextRight;
+    //Find "Custom web page footer" tag input field by name
+    @FindBy(name = "customWebPageFooter")
+    WebElement webPageFooter;
+    //Find "Reset to original value" for "Custom web page footer" tag input field by name
+    @FindBy(xpath = "(//a[contains(text(),'Reset to original value')])[3]")
+    WebElement resetToOriginalValueLinkCustomWebPageFooter;
+    //Find "Custom help URL" tag input field by name
+    @FindBy(name = "customHelpUrl")
+    WebElement customUrl;
+
+    // -------User interface web elements ends-------//
+
+    //    Contact and Group Settings web element starts
+    @FindBy(css = "#sec7 > div.nlv-settings-row-title")
+    WebElement contactAndGroupSettings;
+
+    @FindBy(linkText = "Manage Exchange Server connections")
+    WebElement exchangeConnectionLink;
+
+
+
+    //Contact and Group Settings web elements ends
+
+    //---------------Outlook add-in settings web elements starts------------------
+
+    //Find "Microsoft outlook addin configuration settings" tab by css
+    @FindBy(css = "#sec12 > div.nlv-settings-row-title")
+    WebElement outlookAddinSettings;
+
+    //Find "Configure Outlook add-in policies" by link text
+    @FindBy(linkText = "Configure Outlook add-in policies")
+    WebElement configureOutlookAddinPolicies;
+
+    //Find radio button yes for enable outlook addin by name
+    @FindBy(name = "outlookEnable")
+    WebElement enableOutlookRadioButtonYes;
+
+    //Find radio button no for enable outlook addin by xpath
+    @FindBy(xpath = "(//input[@name='outlookEnable'])[2]")
+    WebElement enableOutlookRadioButtonNo;
+
+    //Find outlook addin settings update button by xpath
+    @FindBy(xpath = "//button[@type='submit']")
+    WebElement outlookAddinSettingsUpdate;
+
+    //Find outlook addin settings cancel button by xpath
+    @FindBy(xpath = "(//button[@type='submit'])[2]")
+    WebElement outlookAddinSettingsCancel;
+
+    //Find outlook addin server address
+    @FindBy(name = "serverEmail")
+    WebElement outlookAddinServerEmailAddress;
+
+    //Find outlook addin Policy synchronization interval
+    @FindBy(name = "policySyncInterval")
+    WebElement outlookPolicySyncInterval;
+
+    //Find outlook addin Enable Secure Message button
+    @FindBy(name = "enableSendSecurelyButton")
+    WebElement outlookEnableSecureMessageCheckBox;
+
+    //Find outlook addin Recipients exempt from policy
+    @FindBy(name = "policyExemptUserList")
+    WebElement outlookRecipientExemptFromPolicy;
+
+    //Find outlook addin Key words
+    @FindBy(name = "subjectKeyword")
+    WebElement outlookSubjectKeyWord;
+
+    //Find outlook addin Total attachment size
+    @FindBy(name = "attachmentSize")
+    WebElement outlookTotalAttachmentSize;
+
+    //Find outlook addin Attachment name patterns
+    @FindBy(name = "attachmentnamePatterns")
+    WebElement outlookAttachmentPattern;
+
+    //Find outlook addin Allow users to bypass policy radio button yes
+    @FindBy(name = "bypassPolicy")
+    WebElement outlookBypassPolicyRadioButtonYes;
+
+    //Find outlook addin Allow users to bypass policy radio button no
+    @FindBy(xpath = "(//input[@name='bypassPolicy'])[2]")
+    WebElement outlookBypassPolicyRadioButtonNo;
+
+    //Find outlook Retain attachments for sent emails
+    @FindBy(name = "retainAttachments")
+    WebElement outlookRetainAttachmentCheckBox;
+
+    //Find outlook Maximum size for attachment
+    @FindBy(name = "maxRetainAttachmentSize")
+    WebElement outlookMaximumAttachmentSize;
+
+    //Find outlook email body as securemessage
+    @FindBy(name = "emailBodyAsSecureMessage")
+    WebElement outlookEmailBodyAsSecuremessageRadioButton;
+
+    //Find outlook email body as notification message
+    @FindBy(xpath = "(//input[@name='emailBodyAsSecureMessage'])[2]")
+    WebElement outlookEmailBodyAsNotificationmessageRadioButton;
+
+    //Find outlook emailaddress to notify
+    @FindBy(name = "notificationEmails")
+    WebElement outlookNotificationEmailAddress;
+
+    //Find outlook Include Secure Message in stub email
+    @FindBy(name = "includeSecureMessageInStubEmail")
+    WebElement outlookIncludeSecureMessageInStubMailCheckBox;
+
+
+    //---------------Outlook add-in settings web elements ends--------------------
+
+
+
+//------------Declaration of web elements ends-----
+
+
+
+    //Constructor of this class to get the webdriver and initialize webelements
+    public serverConfiguration(WebDriver driver) {
+        this.driver = driver;
+        //This initElements method will create all WebElements
+        PageFactory.initElements(driver, this);
+    }
+
+
+//----------- Declare methods for web elements start ------------
+
+    //Method to click on update button
+    public void clickUpdateButton(){updateButton.click();}
+    //Method to click on cancel button
+    public void clickCancelButton(){cancelButton.click();}
+
+
+
+    //----------User interface methods for web elements starts -----//
+
+
+    //Method to click on user interface tag
+    public void clickUserInterface(){userInterface.click();}
+
+
+    // Method to set Browser window title in the input field
+    public void setBrowserWindowTitle(String strBrowserWindowTitle) {
+        browserWindowTitle.sendKeys(strBrowserWindowTitle);
+    }
+
+    //Method to cleat Browser window title field
+    public void clearBrowserWindowTitle(){browserWindowTitle.clear();}
+
+    // Method to set Css style sheet location in the input field
+    public void setCssStyleSheetLocation(String strCssStyleSheetLocation) {
+        cssStyleSheetLocation.sendKeys(strCssStyleSheetLocation);
+    }
+
+    //Method to clear css style sheet location field
+    public void clearCssStyleSheetLocation(){cssStyleSheetLocation.clear();}
+
+    // Method to set Logo locationn the input field
+    public void setLogoLocation(String strLogoLocation) {
+        logoLocation.sendKeys(strLogoLocation);
+    }
+
+    //Method to clear logo location field
+    public void clearLogoLocation(){logoLocation.clear();}
+
+
+    // Method to set Logo link in the input field
+    public void setLogoLink(String strLogoLink) {
+        logoLink.sendKeys(strLogoLink);
+    }
+
+    //Method to clear logo link field
+    public void clearLogoLink(){logoLink.clear();}
+
+    // Method to set Logo width in the input field
+    public void setLogoWidth(String strLogoWidth) {
+        logoWidth.sendKeys(strLogoWidth);
+    }
+
+    //Method to clear logo width
+    public void clearLogoWidth(){logoWidth.clear();}
+
+    // Method to set Logo height in the input field
+    public void setLogoHeight(String strLogoHeight) {
+        logoHeight.sendKeys(strLogoHeight);
+    }
+
+    //Method to clear logo height
+    public void clearLogoHeight(){logoHeight.clear();}
+
+    // Method to set Sign in text top in the input field
+    public void setSignInTextTop(String strSignInTextTop) {
+        signInTextTop.sendKeys(strSignInTextTop);
+    }
+
+    //Method to clear sign in text top field
+    public void clearSignInTextTop(){signInTextTop.clear();}
+
+    // Method to set Sign in text right in the input field
+    public void setSignInTextRight(String strSignInTextRight) {
+        signInTextRight.sendKeys(strSignInTextRight);
+    }
+
+    //Method to clear sign in text right
+    public void clearSignInTextRight(){signInTextRight.clear();}
+
+    // Method to set web page footer in the input field
+    public void setWebPageFooter(String strWebPageFooter) {
+       webPageFooter.sendKeys(strWebPageFooter);
+    }
+
+    //Method to clear web page footer
+    public void clearWebPageFooter(){webPageFooter.clear();}
+
+    // Method to set custom URL in the input field
+    public void setCustomUrl(String strCustomUrl) {
+        customUrl.sendKeys(strCustomUrl);
+    }
+
+    //Method to clear custom URL
+    public void clearCustomUrl(){customUrl.clear();}
+
+    //Method to click on "Reset to original value" for "Custom sign in text (top)" tag input field
+    public void clickResetToOriginalValueLinkCustomSignInTextTop(){resetToOriginalValueLinkCustomSignInTextTop.click();}
+
+    //Method to click on "Reset to original value" for "Custom sign in text (right)" tag input field
+    public void clickResetToOriginalValueLinkCustomSignInTextRight(){resetToOriginalValueLinkCustomSignInTextRight.click();}
+
+    //Method to click on "Reset to original value" for "Custom web page footer" tag input field
+    public void clickResetToOriginalValueLinkCustomWebPageFooter(){resetToOriginalValueLinkCustomWebPageFooter.click();}
+
+    //Method to set all values for web element and update for user interface
+    public void configureUserInterface(String browserWindowTitleParam, String cssStylesheetLocationParam,String logoLocationParam, String logoLinksParam, String logoWidthParam, String logoHeightParam,String customSignInTextTopParam,String customSignInTextRightParam,String customWebpageFooterParam,String customHelpUrlParam) throws InterruptedException {
+
+        this.clickUserInterface();
+
+        this.clearBrowserWindowTitle();
+        this.setBrowserWindowTitle(browserWindowTitleParam);
+
+        this.clearCssStyleSheetLocation();
+        this.setCssStyleSheetLocation(cssStylesheetLocationParam);
+
+        this.clearLogoLocation();
+        this.setLogoLocation(logoLocationParam);
+
+        this.clearLogoLink();
+        this.setLogoLink(logoLinksParam);
+
+        this.clearLogoWidth();
+        this.setLogoWidth(logoWidthParam);
+
+        this.clearLogoHeight();
+        this.setLogoHeight(logoHeightParam);
+
+        this.clearSignInTextTop();
+        this.setSignInTextTop(customSignInTextTopParam);
+
+        this.clearSignInTextRight();
+        this.setSignInTextRight(customSignInTextRightParam);
+
+        this.clearWebPageFooter();
+        this.setWebPageFooter(customWebpageFooterParam);
+
+        this.clearCustomUrl();
+        this.setCustomUrl(customHelpUrlParam);
+
+        this.clickUpdateButton();
+
+
+    }
+
+
+    // ----------User interface methods for web elements ends-----//
+
+    //----------Microsoft outlook add-in methods for web elements starts---------------//
+
+    //Click on outlook add in settings from server configuration
+    public void clickOutlookAddinSettings(){outlookAddinSettings.click();}
+
+    //Click on configure outlook addin policies link
+    public void clickConfigureOutlookAddinPolicies(){configureOutlookAddinPolicies.click();}
+
+    //Enable outlook add-in
+    public void clickEnableOutlookRadioButtonYes(){enableOutlookRadioButtonYes.click();}
+
+    //Disable outlook add-in
+    public void clickEnableOutlookRadioButtonNo(){enableOutlookRadioButtonNo.click();}
+
+    //Click on update button of outlook configuration page
+    public void clickOutlookAddinSettingsUpdate(){outlookAddinSettingsUpdate.click();}
+
+    //Click on cancel button of outlook configuration page
+    public void clickOutlookAddinSettingsCancel(){outlookAddinSettingsCancel.click();}
+
+    //set outlook addin server email address
+    public void sendKeysOutlookAddinServerEmailAddress(String serverEmailAddressParam){
+        outlookAddinServerEmailAddress.sendKeys(serverEmailAddressParam);
+    }
+
+    //clear outlook addin server email address
+    public void clearOutlookAddinServerEmailAddress(){outlookAddinServerEmailAddress.clear();}
+
+    //Set outlook addin policy synchronization interval
+    public void sendKeysOutlookPolicySyncInterval(String outlookPolicySyncIntervalParam) {
+        outlookPolicySyncInterval.sendKeys(outlookPolicySyncIntervalParam);
+    }
+
+    //Clear outlook addin policy synchronization interval
+    public void clearOutlookPolicySyncInterval() {outlookPolicySyncInterval.clear();}
+
+    //Click on outlook enable secure message check box
+    public void clickOutlookEnableSecureMessageCheckBox() {
+        outlookEnableSecureMessageCheckBox.click();
+    }
+
+    //Set outlook addin Recipients exempt from policy
+    public void setOutlookRecipientExemptFromPolicy(String outlookRecipientExemptFromPolicyParam) {
+        outlookRecipientExemptFromPolicy.sendKeys(outlookRecipientExemptFromPolicyParam);
+    }
+
+    //Clear outlook addin Recipients exempt from policy
+    public void clearOutlookRecipientExemptFromPolicy() {
+        outlookRecipientExemptFromPolicy.clear();
+    }
+
+    //Set outlook addin keyword
+    public void sendKeysOutlookSubjectKeyWord(String outlookSubjectKeyWordParam) {
+        outlookSubjectKeyWord.sendKeys(outlookSubjectKeyWordParam);
+    }
+
+    //Clear outlook addin keyword asd
+    public void clearOutlookSubjectKeyWord(String outlookSubjectKeyWordParam) {outlookSubjectKeyWord.clear();}
+
+    //Set outlook addin total attachment size
+    public void sendKeysOutlookTotalAttachmentSize(String outlookTotalAttachmentSizeParam) {
+        outlookTotalAttachmentSize.sendKeys(outlookTotalAttachmentSizeParam);
+    }
+
+    //Clear outlook addin total attachment size
+    public void clearOutlookTotalAttachmentSize() {outlookTotalAttachmentSize.clear();}
+
+    //Set outlook addin attachment pattern
+    public void setOutlookAttachmentPattern(String outlookAttachmentPatternParam) {
+        outlookAttachmentPattern.sendKeys(outlookAttachmentPatternParam);
+    }
+
+    //Clear outlook addin attachment pattern
+    public void clearOutlookAttachmentPattern() {outlookAttachmentPattern.clear();}
+
+    //Click outlook addin Allow users to bypass policy radio button yes
+    public void clickOutlookBypassPolicyRadioButtonYes(){outlookBypassPolicyRadioButtonYes.click();}
+
+    //Click outlook addin Allow users to bypass policy radio button no
+    public void clickOutlookBypassPolicyRadioButtonNo(){outlookBypassPolicyRadioButtonNo.click();}
+
+    //Click  ourlook retain attachment check box
+    public void clickOutlookRetainAttachmentCheckBox() {
+
+
+        outlookRetainAttachmentCheckBox.click();
+
+    }
+
+    //Set Outlook maximum attachment size
+    public void sendKeysOutlookMaximumAttachmentSize(String ParamoutlookMaximumAttachmentSize) {
+
+
+        outlookMaximumAttachmentSize.sendKeys(ParamoutlookMaximumAttachmentSize);
+
+    }
+
+    //Click outlook email body as secure message radio button
+    public void clickOutlookEmailBodyAsSecuremessageRadioButton() {
+
+
+        outlookEmailBodyAsSecuremessageRadioButton.click();
+
+    }
+
+    //Click outlook email body as notification message radio button
+    public void clickOutlookEmailBodyAsNotificationmessageRadioButton() {
+
+
+        outlookEmailBodyAsNotificationmessageRadioButton.click();
+
+    }
+
+    //Set Outlook notification email address
+    public void sendKeysOutlookNotificationEmailAddress(String ParamoutlookNotificationEmailAddress) {
+
+
+        outlookNotificationEmailAddress.sendKeys(ParamoutlookNotificationEmailAddress);
+
+    }
+
+    //Click outlook include secure message in stub mail check box
+    public void clickOutlookIncludeSecureMessageInStubMailCheckBox() {
+
+
+        outlookIncludeSecureMessageInStubMailCheckBox.click();
+
+    }
+
+    //Method to handle outlook pop up window
+    public void acceptAlertWindowOutlookAddin(){
+        Alert alertOK = driver.switchTo().alert();
+        alertOK.accept();
+    }
+
+    //Method to configure outlook addin
+
+    public void configureOutlookAddin(String serverEmailAddress, String policySyncInterval, String subjectLineKeywords, String totalAttachmentSize, String maximumSizeforAttachment){
+
+        this.clickOutlookAddinSettings();
+        this.clickConfigureOutlookAddinPolicies();
+        this.clickEnableOutlookRadioButtonYes();
+        this.sendKeysOutlookAddinServerEmailAddress(serverEmailAddress);
+        this.sendKeysOutlookPolicySyncInterval(policySyncInterval);
+        this.sendKeysOutlookSubjectKeyWord(subjectLineKeywords);
+        this.sendKeysOutlookTotalAttachmentSize(totalAttachmentSize);
+        this.clickOutlookBypassPolicyRadioButtonYes();
+        this.clickOutlookRetainAttachmentCheckBox();
+        this.sendKeysOutlookMaximumAttachmentSize(maximumSizeforAttachment);
+        this.clickOutlookAddinSettingsUpdate();
+        this.acceptAlertWindowOutlookAddin();
+
+    }
+
+    //----------Microsoft outlook add-in methods for web elements ends---------------//
+
+    //-------Workspace Settings methods starts---------//
+
+    public void clickWorkspace() {
+        workspace.click();
+    }
+    public void clickEnableWorkspace() {
+        enableWorkspace.click();
+    }
+    public void clickApplyAllWorkspace() {
+        applyAllWorkspace.click();
+    }
+    public void clickCheckAllNotification() {
+        checkAllNotification.click();
+    }
+    public void clearCollaboratorPerUser() {
+        collaboratorPerUser.clear();
+    }
+    public void clearAutoDeleteDate() {
+        autoDeleteDate.clear();
+    }
+    public void clearFirstDeletionReminder() {
+        firstDeletionReminder.clear();
+    }
+    public void clearSecondDeletionReminder() {
+        secondDeletionReminder.clear();
+    }
+    public void clearHideAutoDeletion() {
+        hideAutoDeletion.clear();
+    }
+    public void sendKeysSenderLicenseCollaboration(String ParamsenderLicenseCollaboration) {
+        senderLicenseCollaboration.sendKeys(ParamsenderLicenseCollaboration);
+    }
+    public void sendKeysCollaboratorPerUser(String ParamcollaboratorPerUser) {
+        collaboratorPerUser.sendKeys(ParamcollaboratorPerUser);
+    }
+    public void sendKeysAutoDeleteDate(String ParamautoDeleteDate) {
+        autoDeleteDate.sendKeys(ParamautoDeleteDate);
+    }
+    public void sendKeysFirstDeletionReminder(String ParamfirstDeletionReminder) {
+        firstDeletionReminder.sendKeys(ParamfirstDeletionReminder);
+    }
+    public void sendKeysSecondDeletionReminder(String ParamsecondDeletionReminder) {
+        secondDeletionReminder.sendKeys(ParamsecondDeletionReminder);
+    }
+    public void sendKeysHideAutoDeletion(String ParamhideAutoDeletion) {
+        hideAutoDeletion.sendKeys(ParamhideAutoDeletion);
+    }
+    public void configureWorkspace(){
+    }
+    //-------Workspace Settings methods ends---------//
+
+    //-----Antivirus webelemnt methods starts------//
+
+    public void clickAntivirusEnable() {
+        antivirusEnable.click();
+    }
+    public void clickAntivirusDisable() {
+        antivirusDisable.click();
+    }
+    public void clickFileSizeEnable() {
+        fileSizeEnable.click();
+    }
+    public void clickLocalServer() {
+        localServer.click();
+    }
+    public void clickRemoteServer() {
+        remoteServer.click();
+    }
+    public void clearFilePattern() {
+        filePattern.clear();
+    }
+    public void clearRemoteServerAddress() {
+        remoteServerAddress.clear();
+    }
+    public void clearMaxFilesSize() {
+        maxFilesSize.clear();
+    }
+    public void sendKeysRemoteServer(String ParamremoteServer) {
+        remoteServer.sendKeys(ParamremoteServer);
+    }
+    public void sendKeysMaxFilesSize(String ParammaxFilesSize) {
+        maxFilesSize.sendKeys(ParammaxFilesSize);
+    }
+    public void sendKeysFilePattern(String ParamfilePattern) {
+        filePattern.sendKeys(ParamfilePattern);
+    }
+    public void selectApi(String Apiversion){
+        restApiSelect.findElement(By.name("metadefenderRestAPIVersion")).sendKeys(Apiversion);
+    }
+    //-----Antivirus webelemnt methods ends------//
+
+    //----User settings methods start-------------//
+    public void clickEnableCompliance() {
+        enableCompliance.click();
+    }
+    public void clickDisableCompliance() {
+        disableCompliance.click();
+    }
+    public void clickEnableQuota() {
+        enableQuota.click();
+    }
+    public void clickDisableQuota() {
+        disableQuota.click();
+    }
+    public void clickUserQuota() {
+        userQuota.click();
+    }
+    public void clickMaximumUserQuota() {
+        maximumUserQuota.click();
+    }
+    public void sendKeysUserQuota(String ParamuserQuota) {
+        userQuota.sendKeys(ParamuserQuota);
+    }
+    public void sendKeysMaximumUserQuota(String ParammaximumUserQuota) {
+        maximumUserQuota.sendKeys(ParammaximumUserQuota);
+
+    }
+    public void clearUserQuota() {
+        userQuota.clear();
+    }
+    public void clearMaximumUserQuota() {
+        maximumUserQuota.clear();
+    }
+    public void clickDisableExpiration() {
+        disableExpiration.click();
+    }
+    public void clickEnableExpiration() {
+        enableExpiration.click();
+
+    }
+    public void clickInactivityPeriod() {
+        inactivityPeriod.click();
+    }
+    public void sendKeysInactivityPeriod(String ParaminactivityPeriod) {
+        inactivityPeriod.sendKeys(ParaminactivityPeriod);
+    }
+    public void clearInactivityPeriod() {
+        inactivityPeriod.clear();
+    }
+    public void clickExpireUser() {
+        expireUser.click();
+    }
+    public void clickRemoveSenderLicense() {
+        removeSenderLicense.click();
+    }
+    public void clickFristWarning() {
+
+
+        fristWarning.click();
+
+    }
+    public void clickSecondWarning() {
+
+
+        secondWarning.click();
+
+    }
+    public void clickExclusionList() {
+
+
+        exclusionList.click();
+
+    }
+    public void clickDeleteExpireUser() {
+        deleteExpireUser.click();
+    }
+    public void clearFristWarning() {
+        fristWarning.clear();
+    }
+    public void clearSecondWarning() {
+        secondWarning.clear();
+    }
+    public void clearExclusionList() {
+        exclusionList.clear();
+    }
+    public void clearDeleteExpireUser() {
+        deleteExpireUser.clear();
+    }
+    public void sendKeysFristWarning(String ParamfristWarning) {
+        fristWarning.sendKeys(ParamfristWarning);
+    }
+    public void sendKeysSecondWarning(String ParamsecondWarning) {
+        secondWarning.sendKeys(ParamsecondWarning);
+    }
+    public void sendKeysExclusionList(String ParamexclusionList) {
+        exclusionList.sendKeys(ParamexclusionList);
+    }
+    public void sendKeysDeleteExpireUser(String ParamdeleteExpireUser) {
+        deleteExpireUser.sendKeys(ParamdeleteExpireUser);
+    }
+    //----User settings methods end-------------//
+
+
+//------------Declare methods for web elements end ------
+
+
+
+
+}

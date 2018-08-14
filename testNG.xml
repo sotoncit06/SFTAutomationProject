@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="WalletHub Test Review" verbose="1" >
+    <test name="LoginTest" >
+        <classes>
+            <class name="testcases.configuration"></class>
+        </classes>
+    </test>
+    <test name="Login" >
+        <classes>
+            <class name="testcases.testSftSignIn"></class>
+        </classes>
+    </test>
+</suite>
